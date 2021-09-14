@@ -1,8 +1,6 @@
-package steps;
+package steps.projects;
 
-import org.testng.Assert;
-import pages.projectsPage.ProjectsPage;
-import tests.ui.BaseTest;
+import pageobjects.projects.ProjectsPage;
 
 public class ProjectsPageSteps {
 

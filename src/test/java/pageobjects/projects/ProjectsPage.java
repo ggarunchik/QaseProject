@@ -1,10 +1,11 @@
-package pages.projectsPage;
+package pageobjects.projects;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
-import pages.BasePage;
+import pageobjects.BasePage;
 
 import java.time.Duration;
 
@@ -15,6 +16,8 @@ public class ProjectsPage extends BasePage {
 
     private static final String PROJECTS_NAME_TABLE_CSS = "th[class='sortable']";
 
+
+    @Step("Verifying is Projects Page opened")
     @Override
     public ProjectsPage isPageOpened() {
         log.info("Check the 'Login' button is displayed.");

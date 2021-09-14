@@ -12,6 +12,8 @@
         <!-- Plugin Versions -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
         <!-- Dependencies Versions -->
         <selenium.version>3.141.59</selenium.version>
         <selenide.version>5.24.2</selenide.version>
@@ -20,6 +22,8 @@
         <lombok.version>1.18.20</lombok.version>
         <log4j-core.version>2.14.1</log4j-core.version>
         <jackson-dataformat-yaml.version>2.12.3</jackson-dataformat-yaml.version>
+        <aspectjweaver.version>1.9.1</aspectjweaver.version>
+        <allure.testng.version>2.13.2</allure.testng.version>
     </properties>
 
     <dependencies>
@@ -60,6 +64,39 @@
             <artifactId>jackson-dataformat-yaml</artifactId>
             <version>${jackson-dataformat-yaml.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.testng.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <argLine>
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar
+                        -Xmx256m
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectjweaver.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

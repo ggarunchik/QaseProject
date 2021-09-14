@@ -2,6 +2,7 @@ package tests.ui.login;
 
 import org.testng.annotations.Test;
 import tests.ui.BaseTest;
+import utils.AllureUtils;
 
 public class LoginPageTests extends BaseTest {
 
@@ -11,5 +12,6 @@ public class LoginPageTests extends BaseTest {
     @Test(description = "Verifying that user can login with existing credits")
     public void verifyUserCanLoginWithExistingCredits() {
         loginPageSteps.login(USER_NAME,USER_PASSWORD);
+        AllureUtils.takeScreenshot();
     }
 }

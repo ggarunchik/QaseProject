@@ -34,3 +34,4 @@ out/
 *.ipr
 *.iws
 *.db
+.allure/*
