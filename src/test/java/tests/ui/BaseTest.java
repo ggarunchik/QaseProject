@@ -2,8 +2,10 @@ package tests.ui;
 
 import com.codeborne.selenide.Configuration;
 import configurations.TestListener;
+import models.factory.newprojectfactory.NewProjectFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import steps.login.LoginPageSteps;
 import steps.projects.ProjectsPageSteps;
@@ -16,8 +18,11 @@ public class BaseTest {
 
     protected LoginPageSteps loginPageSteps;
     protected ProjectsPageSteps projectsPageSteps;
+    protected NewProjectFactory newProjectFactory;
 
     protected PropertyReader propertyReader = new PropertyReader("src/test/resources/configuration.properties");
+    protected final String USERNAME = propertyReader.getPropertyValueByKey("username");
+    protected final String PASSWORD = propertyReader.getPropertyValueByKey("password");
 
     @BeforeMethod
     public void setupBrowser() {
@@ -28,6 +33,7 @@ public class BaseTest {
         Configuration.clickViaJs = true;
         loginPageSteps = new LoginPageSteps();
         projectsPageSteps = new ProjectsPageSteps();
+        newProjectFactory = new NewProjectFactory();
     }
 
     @AfterMethod(alwaysRun = true)

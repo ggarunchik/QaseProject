@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import pageobjects.BasePage;
 import pageobjects.projects.ProjectsPage;
+import utils.AllureUtils;
 
 import java.time.Duration;
 
@@ -17,7 +18,6 @@ import static org.openqa.selenium.By.id;
 
 @Log4j2
 public class LoginPage extends BasePage {
-
     private static final By EMAIL_INPUT_ID = id("inputEmail");
     private static final By PASSWORD_INPUT_ID = id("inputPassword");
     private static final String REMEMBER_ME_CHECKBOX = "";
@@ -26,15 +26,16 @@ public class LoginPage extends BasePage {
     private final String HOME_URL = propertyReader.getPropertyValueByKey("loginUrl");
 
 
-    @Step("Verifying is Login Page opened")
+    @Step("Verifying is Login Page opened.")
     @Override
     public LoginPage isPageOpened() {
-        log.info("Check the 'Login' button is displayed.");
+        log.info("Verifying is Login Page opened.");
         try {
             $(LOGIN_BUTTON_ID).shouldBe(Condition.visible, Duration.ofMillis(4000));
         } catch (NoSuchElementException exception) {
             log.error("'Login' button can't be found.");
             Assert.fail("'Login' button can't be found.");
+            AllureUtils.takeScreenshot();
         }
         return this;
     }

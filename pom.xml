@@ -24,6 +24,7 @@
         <jackson-dataformat-yaml.version>2.12.3</jackson-dataformat-yaml.version>
         <aspectjweaver.version>1.9.1</aspectjweaver.version>
         <allure.testng.version>2.13.2</allure.testng.version>
+        <faker.version>1.0.2</faker.version>
     </properties>
 
     <dependencies>
@@ -69,6 +70,11 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure.testng.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${faker.version}</version>
         </dependency>
     </dependencies>
 
