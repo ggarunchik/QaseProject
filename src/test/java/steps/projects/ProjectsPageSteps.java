@@ -1,7 +1,6 @@
 package steps.projects;
 
-import io.qameta.allure.Step;
-import models.NewProject;
+import models.singleproject.Project;
 import pageobjects.projects.ProjectsPage;
 import pageobjects.projects.createprojectpage.CreateProjectPage;
 
@@ -15,7 +14,7 @@ public class ProjectsPageSteps {
         createProjectPage = new CreateProjectPage();
     }
 
-    public ProjectsPageSteps createNewProject(NewProject newProject, String accessType) {
+    public ProjectsPageSteps createNewProject(Project newProject, String accessType) {
         projectsPage
                 .openProjectsPage()
                 .clickOnCreateProjectButton();
@@ -25,7 +24,7 @@ public class ProjectsPageSteps {
                 .selectAccessType(accessType)
                 .clickOnCreateButton();
         projectsPage
-                .isCorrectProjectPageOpened(newProject.getProjectName());
+                .isCorrectProjectPageOpened(newProject.getTitle());
         return this;
     }
 }

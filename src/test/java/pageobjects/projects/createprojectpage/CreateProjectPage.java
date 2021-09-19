@@ -1,12 +1,11 @@
 package pageobjects.projects.createprojectpage;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import elements.Input;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import models.NewProject;
+import models.singleproject.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
@@ -39,12 +38,12 @@ public class CreateProjectPage extends BasePage {
     }
 
     @Step("Entering new project data.")
-    public CreateProjectPage enterNewProjectData(NewProject newProject) {
+    public CreateProjectPage enterNewProjectData(Project newProject) {
         log.info("Entering new project data {}.", newProject);
-        new Input("Project name").write(newProject.getProjectName());
+        new Input("Project name").write(newProject.getTitle());
         new Input("Project Code").clear();
-        new Input("Project Code").write(newProject.getProjectCode());
-        $(DESCRIPTION_TEXT_AREA_CSS).sendKeys(newProject.getProjectDescription());
+        new Input("Project Code").write(newProject.getCode());
+        $(DESCRIPTION_TEXT_AREA_CSS).sendKeys(newProject.getDescription());
         return this;
     }
 
