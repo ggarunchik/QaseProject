@@ -37,7 +37,7 @@ public class BaseAdapter {
                 .then()
                         .log().all()
                         .statusCode(status)
-                        .extract().body().asString();
+                        .contentType(ContentType.JSON).extract().body().asString();
     }
 
     @Step("Make get request")
@@ -54,7 +54,7 @@ public class BaseAdapter {
                 .then()
                         .log().all()
                         .statusCode(status)
-                        .extract().body().asString();
+                        .contentType(ContentType.JSON).extract().body().asString();
     }
 
     @Step("Make delete request")
@@ -71,6 +71,6 @@ public class BaseAdapter {
                 .then()
                         .log().all()
                         .statusCode(status)
-                        .extract().body().asString();
+                        .contentType(ContentType.JSON).extract().body().asString();
     }
 }
