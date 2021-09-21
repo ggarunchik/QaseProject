@@ -1,0 +1,10 @@
+package pages;
+
+import utils.PropertyReader;
+
+public abstract class BasePage {
+
+    protected PropertyReader propertyReader = new PropertyReader("src/test/resources/configuration.properties");
+
+    public abstract boolean isPageOpened();
+}
