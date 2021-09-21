@@ -1,12 +1,12 @@
 package pageobjects.login;
 
 import com.codeborne.selenide.Condition;
-import io.qameta.allure.Step;
-import com.codeborne.selenide.SelenideElement;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
-import pageobjects.BasePage;
-import pageobjects.projects.ProjectsPage;
+import org.openqa.selenium.NoSuchElementException;
+import org.testng.Assert;
+import pages.BasePage;
+import pages.projectsPage.ProjectsPage;
 
 import java.time.Duration;
 
@@ -36,24 +36,28 @@ public class LoginPage extends BasePage {
 
     @Step("Opening Login Page")
     public LoginPage openLoginPage() {
+        log.info("Opening LoginPage.");
         open(HOME_URL);
         return this;
     }
 
     @Step("Entering user email: {userEmail}")
     public LoginPage enterUserEmail(String userEmail) {
+        log.info("Entering user email: {}.", userEmail);
         $(EMAIL_INPUT_ID).sendKeys(userEmail);
         return this;
     }
 
     @Step("Entering user password: {userPassword}")
     public LoginPage enterUserPassword(String userPassword) {
+        log.info("Entering user password: {}.", userPassword);
         $(PASSWORD_INPUT_ID).sendKeys(userPassword);
         return this;
     }
 
     @Step("Click on Login button")
     public ProjectsPage clickLoginButton() {
+        log.info("Pressing Login button on LoginPage.");
         $(LOGIN_BUTTON_ID).click();
         return new ProjectsPage();
     }
