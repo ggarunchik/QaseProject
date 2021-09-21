@@ -5,8 +5,9 @@ import configurations.TestListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import steps.LoginPageSteps;
-import steps.ProjectsPageSteps;
+import org.testng.annotations.Parameters;
+import steps.login.LoginPageSteps;
+import steps.projects.ProjectsPageSteps;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;

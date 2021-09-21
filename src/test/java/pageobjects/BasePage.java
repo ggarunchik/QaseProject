@@ -1,4 +1,4 @@
-package pages;
+package pageobjects;
 
 import utils.PropertyReader;
 

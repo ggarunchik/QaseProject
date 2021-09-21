@@ -1,14 +1,12 @@
-package pages.loginPage;
+package pageobjects.login;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import com.codeborne.selenide.SelenideElement;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-import pages.BasePage;
-import pages.projectsPage.ProjectsPage;
+import pageobjects.BasePage;
+import pageobjects.projects.ProjectsPage;
 
 import java.time.Duration;
 
@@ -28,6 +26,7 @@ public class LoginPage extends BasePage {
     private final String HOME_URL = propertyReader.getPropertyValueByKey("base_url") + "login";
 
 
+    @Step("Verifying is Login Page opened")
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
@@ -35,21 +34,25 @@ public class LoginPage extends BasePage {
         return element.isDisplayed();
     }
 
+    @Step("Opening Login Page")
     public LoginPage openLoginPage() {
         open(HOME_URL);
         return this;
     }
 
+    @Step("Entering user email: {userEmail}")
     public LoginPage enterUserEmail(String userEmail) {
         $(EMAIL_INPUT_ID).sendKeys(userEmail);
         return this;
     }
 
+    @Step("Entering user password: {userPassword}")
     public LoginPage enterUserPassword(String userPassword) {
         $(PASSWORD_INPUT_ID).sendKeys(userPassword);
         return this;
     }
 
+    @Step("Click on Login button")
     public ProjectsPage clickLoginButton() {
         $(LOGIN_BUTTON_ID).click();
         return new ProjectsPage();
