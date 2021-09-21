@@ -1,4 +1,4 @@
-package pageobjects.login;
+package pages.loginPage;
 
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
