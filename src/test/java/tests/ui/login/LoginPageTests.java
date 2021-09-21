@@ -10,6 +10,8 @@ public class LoginPageTests extends BaseTest {
 
     @Test(description = "Verifying that user can login with existing credits")
     public void verifyUserCanLoginWithExistingCredits() {
-        loginPageSteps.login(USER_NAME,USER_PASSWORD);
+        loginPageSteps
+                .login(USER_NAME, USER_PASSWORD)
+                .isLoginSuccessful();
     }
 }

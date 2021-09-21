@@ -23,7 +23,7 @@ public class BaseTest {
     public void setupBrowser() {
         Configuration.headless = false;
         Configuration.startMaximized = true;
-        Configuration.timeout = 20000;
+        Configuration.timeout = 5000;
         Configuration.browser = "chrome";
         Configuration.clickViaJs = true;
         loginPageSteps = new LoginPageSteps();
