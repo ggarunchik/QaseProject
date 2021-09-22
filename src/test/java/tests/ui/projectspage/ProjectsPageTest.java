@@ -8,7 +8,7 @@ import utils.AllureUtils;
 
 public class ProjectsPageTest extends BaseTest {
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, description = "Creating a new project")
+    @Test(description = "Creating a new project")
     public void verifyNewProjectCouldBeCreated() {
         NewProject newProject = newProjectFactory.generateNewProjectData();
         loginPageSteps.login(USERNAME,PASSWORD);

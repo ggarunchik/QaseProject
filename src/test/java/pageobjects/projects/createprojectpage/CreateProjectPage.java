@@ -26,16 +26,10 @@ public class CreateProjectPage extends BasePage {
 
     @Step("Verifying is Create Project Page opened")
     @Override
-    public CreateProjectPage isPageOpened() {
-        log.info("Verifying is Create Project Page opened.");
-        try {
-            $(CREATE_PROJECTS_BUTTON_CSS).shouldBe(Condition.visible, Duration.ofMillis(4000));
-        } catch (NoSuchElementException exception) {
-            log.error("'Create Project' button can't be found.");
-            Assert.fail("'Create Project' button can't be found.");
-            AllureUtils.takeScreenshot();
-        }
-        return this;
+    public boolean isPageOpened() {
+        SelenideElement element =
+            $(CREATE_PROJECTS_BUTTON_CSS).shouldBe(Condition.visible, Duration.ofSeconds(4));
+        return element.isDisplayed();
     }
 
     @Step("Entering new project data.")
