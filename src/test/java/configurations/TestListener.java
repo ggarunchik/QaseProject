@@ -32,7 +32,7 @@ public class TestListener implements ITestListener {
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
         log.info(String.format("======================================== FAILED TEST %s Duration: %ss ========================================", iTestResult.getName(),
                 getExecutionTime(iTestResult)));
-                AllureUtils.takeScreenshot();
+        AllureUtils.takeScreenshot();
     }
 
     public void onStart(ITestContext context) {

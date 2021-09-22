@@ -23,8 +23,5 @@ public class DropDown {
         log.info("Selecting option '{}' in drop-down {}", option, label);
         $(By.xpath(DROPDOWN_XPATH)).click();
         $(By.xpath(String.format(SELECT_OPTION_XPATH, label, option))).click();
-        boolean isOptionSelected =
-                $(By.xpath(String.format(SELECTED_OPTION_XPATH, label))).getText().equals(option);
-        Assert.assertTrue(isOptionSelected, "Option has not been selected.");
     }
 }
