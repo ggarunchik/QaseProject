@@ -16,6 +16,7 @@ public class ProjectsPageSteps {
         createProjectPage = new CreateProjectPage();
     }
 
+    @Step("Verify is project has been created {newProject}")
     public ProjectsPageSteps createNewProject(NewProject newProject, String accessType) {
         boolean isProjectCreated =
                 projectsPage
