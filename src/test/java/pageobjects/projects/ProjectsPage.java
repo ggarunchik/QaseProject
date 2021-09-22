@@ -17,9 +17,9 @@ import static com.codeborne.selenide.Selenide.open;
 @Log4j2
 public class ProjectsPage extends BasePage {
 
-    private static final String PROJECTS_NAME_TABLE_CSS = "th[class='sortable']";
+    private static final String PROJECTS_NAME_TABLE_CSS = "th.sortable";
     private static final String CREATE_PROJECTS_BUTTON_CSS = "#createButton";
-    private static final String PROJECT_NAME_XPATH = "//p[@class='header']";
+    private static final String PROJECT_NAME_CSS = "p.header";
     private final String PROJECTS_PAGE_URL = propertyReader.getPropertyValueByKey("projectsPage");
 
 
@@ -38,10 +38,11 @@ public class ProjectsPage extends BasePage {
         return this;
     }
 
+    @Step("Verify correct project page has been opened with name {projectName}")
     public ProjectsPage isCorrectProjectPageOpened(String projectName) {
         log.info("Check is correct project page has been opened {}", projectName);
         try {
-            SelenideElement element = $(By.xpath(PROJECT_NAME_XPATH));
+            SelenideElement element = $(By.cssSelector(PROJECT_NAME_CSS));
             element.shouldBe(Condition.visible, Duration.ofMillis(5000));
             boolean isProjectNameCorrect =
                     projectName.equals(element.getText());
