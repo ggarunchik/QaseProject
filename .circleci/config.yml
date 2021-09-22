@@ -7,6 +7,7 @@ orbs:
   browser-tools: circleci/browser-tools@1.2.1
 jobs:
   ui-tests:
+    parallelism: 3
     docker:
       - image: cimg/openjdk:11.0-browsers
     steps:
@@ -25,8 +26,11 @@ jobs:
           name: Check browser version
           command: google-chrome --version
       - run:
+          name: Setting access rights for test executor
+          command: chmod 777 src/test/resources/run-tests-parallel.sh
+      - run:
           name: Running tests
-          command: mvn clean test
+          command: ./src/test/resources/run-tests-parallel.sh
       - run:
           name: Generate allure report
           command: mvn allure:report
