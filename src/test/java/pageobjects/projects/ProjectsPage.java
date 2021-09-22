@@ -20,7 +20,7 @@ public class ProjectsPage extends BasePage {
     private static final String PROJECTS_NAME_TABLE_CSS = "th.sortable";
     private static final String CREATE_PROJECTS_BUTTON_CSS = "#createButton";
     private static final String PROJECT_NAME_CSS = "p.header";
-    private final String PROJECTS_PAGE_URL = propertyReader.getPropertyValueByKey("projectsPage");
+    private final String PROJECTS_PAGE_URL = propertyReader.getPropertyValueByKey("base_url") + "projects";
 
 
     @Step("Verifying is Projects Page opened")
@@ -33,12 +33,10 @@ public class ProjectsPage extends BasePage {
 
     @Step("Opening Projects Page.")
     public ProjectsPage openProjectsPage() {
-        log.info("Opening Projects Page.");
         open(PROJECTS_PAGE_URL);
         return this;
     }
 
-    @Step("Verify correct project page has been opened with name {projectName}")
     public ProjectsPage isCorrectProjectPageOpened(String projectName) {
         log.info("Check is correct project page has been opened {}", projectName);
         try {
@@ -56,7 +54,6 @@ public class ProjectsPage extends BasePage {
 
     @Step("Click on Create new project button.")
     public CreateProjectPage clickOnCreateProjectButton() {
-        log.info("Click on Create new project button.");
         $(CREATE_PROJECTS_BUTTON_CSS).click();
         return new CreateProjectPage();
     }

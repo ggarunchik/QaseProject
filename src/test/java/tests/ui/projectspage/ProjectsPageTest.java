@@ -1,10 +1,8 @@
 package tests.ui.projectspage;
 
-import configurations.RetryAnalyzer;
 import models.singleproject.Project;
 import org.testng.annotations.Test;
 import tests.ui.BaseTest;
-import utils.AllureUtils;
 
 public class ProjectsPageTest extends BaseTest {
 
