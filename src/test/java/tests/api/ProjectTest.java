@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
-public class ProjectTest extends BaseApiTest{
+public class ProjectTest extends BaseApiTest {
 
     @Test(retryAnalyzer = RetryAnalyzer.class, description = "CRUD Project Test")
     public void projectsAPITest() {

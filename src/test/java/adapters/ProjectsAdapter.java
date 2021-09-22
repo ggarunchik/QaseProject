@@ -9,17 +9,17 @@ import models.singleproject.createproject.ProjectCreateResults;
 public class ProjectsAdapter extends BaseAdapter {
 
     public Project get(Project project) {
-        String response = get("project/" + project.getCode(),"",200);
+        String response = get("project/" + project.getCode(), "", 200);
         return gson.fromJson(response, Project.class);
     }
 
     public Projects get(int limit) {
-        String response = get("project/" + "?limit=" + limit,"",200);
+        String response = get("project/" + "?limit=" + limit, "", 200);
         return gson.fromJson(response, Projects.class);
     }
 
     public Project get(String code) {
-        String response = get("project/" + code,"",200);
+        String response = get("project/" + code, "", 200);
         return gson.fromJson(response, Project.class);
     }
 

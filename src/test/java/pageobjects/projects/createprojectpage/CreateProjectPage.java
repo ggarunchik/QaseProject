@@ -27,7 +27,7 @@ public class CreateProjectPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-            $(CREATE_PROJECTS_BUTTON_CSS).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(CREATE_PROJECTS_BUTTON_CSS).shouldBe(Condition.visible, Duration.ofSeconds(4));
         return element.isDisplayed();
     }
 
