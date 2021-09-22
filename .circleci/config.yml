@@ -33,8 +33,14 @@ jobs:
           root: ~/repo
           paths:
             - target/allure-results/*
-      - store_test_results:
-          path: target/surefire-reports/junitreports
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junitreports/ \;
+          when: always
+          - store_test_results:
+              path: ~/target/surefire-reports/junitreports
       - store_artifacts:
           path: target/allure-results/
           destination: target/allure-results/
