@@ -18,6 +18,6 @@ public class InfoField {
 
     public String getFieldValueByName() {
         log.info("Getting info from filed with name '{}'", label);
-        return $(By.xpath(PREVIEW_INFO_LOCATOR)).getText();
+        return $(By.xpath(String.format(PREVIEW_INFO_LOCATOR, label))).getText();
     }
 }

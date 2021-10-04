@@ -51,8 +51,9 @@ public class ProjectPage extends BasePage {
         return titleNames.stream().anyMatch(item -> testCaseName.equals(item.getText()));
     }
 
-    @Step("Click on test case with name {}")
+    @Step("Click on test case with name {testCaseName}")
     public TestCaseInfoPage clickOnCaseByCaseName(String testCaseName) {
+        isPageOpened();
         List<SelenideElement> titleNames = $$(TEST_CASE_TITLE_CSS);
         for (SelenideElement element : titleNames) {
             String testName = element.getText();
@@ -63,8 +64,8 @@ public class ProjectPage extends BasePage {
         return new TestCaseInfoPage();
     }
 
-    @Step("Verify is test case {} exists")
-    public ProjectPage isTestCaseExist(String testCaseName) {
+    @Step("Verify is test case {testCaseName} not exists")
+    public ProjectPage isTestCaseNotExist(String testCaseName) {
         isPageOpened();
         refresh();
         isPageOpened();

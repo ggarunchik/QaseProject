@@ -6,7 +6,10 @@ import models.factory.newprojectfactory.ProjectFactory;
 import models.factory.newtestcasefactory.TestCaseFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pageobjects.project.DeleteTestModalPage;
+import pageobjects.project.EditTestCasePage;
 import pageobjects.project.ProjectPage;
+import pageobjects.project.TestCaseInfoPage;
 import steps.login.LoginPageSteps;
 import steps.project.ProjectPageSteps;
 import steps.projects.ProjectsPageSteps;
@@ -23,6 +26,9 @@ public class BaseTest {
     protected TestCaseFactory testCaseFactory;
     protected ProjectPage projectPage;
     protected ProjectPageSteps projectPageSteps;
+    protected EditTestCasePage editTestCasePage;
+    protected DeleteTestModalPage deleteTestModalPage;
+    protected TestCaseInfoPage testCaseInfoPage;
 
     protected PropertyReader propertyReader = new PropertyReader("src/test/resources/configuration.properties");
     protected final String USERNAME = propertyReader.getPropertyValueByKey("username");
@@ -43,6 +49,9 @@ public class BaseTest {
         testCaseFactory = new TestCaseFactory();
         projectPage = new ProjectPage();
         projectPageSteps = new ProjectPageSteps();
+        editTestCasePage = new EditTestCasePage();
+        deleteTestModalPage = new DeleteTestModalPage();
+        testCaseInfoPage = new TestCaseInfoPage();
     }
 
     @AfterMethod(alwaysRun = true)

@@ -34,7 +34,7 @@ public class ProjectsPageSteps {
         return this;
     }
 
-    @Step("Search for project with name {}")
+    @Step("Search for project with name {projectName}")
     public ProjectsPageSteps searchForProject(String projectName) {
         boolean isProjectDisplayed =
                 projectsPage
@@ -44,7 +44,7 @@ public class ProjectsPageSteps {
         return this;
     }
 
-    @Step("Opening project with name {}")
+    @Step("Opening project with name {projectName}")
     public ProjectPage openProject(String projectName) {
         projectsPage
                 .searchInForm(projectName)
