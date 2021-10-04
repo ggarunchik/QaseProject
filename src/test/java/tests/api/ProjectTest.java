@@ -1,12 +1,11 @@
 package tests.api;
 
 import configurations.RetryAnalyzer;
+import models.project.Project;
+import models.project.createproject.ProjectCreateResults;
 import models.projects.Projects;
-import models.singleproject.Project;
-import models.singleproject.createproject.ProjectCreateResults;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;

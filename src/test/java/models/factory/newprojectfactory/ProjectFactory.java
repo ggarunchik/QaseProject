@@ -1,9 +1,9 @@
 package models.factory.newprojectfactory;
 
-import models.singleproject.Project;
 import models.factory.BaseFactory;
+import models.project.Project;
 
-public class NewProjectFactory extends BaseFactory {
+public class ProjectFactory extends BaseFactory {
 
     public Project generateNewProjectData() {
         return Project.builder()

@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class Input {
     String label;
     String INPUT_LOCATOR_XPATH = "//label[contains(text(), '%s')]/../..//input";
+    String INPUT_LOCATOR_WITH_TOAST_XPATH = "//label[contains(text(), '%s')]/..//div[@class='ProseMirror toastui-editor-contents']";
 
     public Input(String label) {
         this.label = label;
@@ -17,6 +18,11 @@ public class Input {
     public void write(String text) {
         log.info("Writing text '{}' into input with label {}", text, label);
         $(By.xpath(String.format(INPUT_LOCATOR_XPATH, label))).sendKeys(text);
+    }
+
+    public void writeToInputWithToast(String text) {
+        log.info("Writing text '{}' into input with label {}", text, label);
+        $(By.xpath(String.format(INPUT_LOCATOR_WITH_TOAST_XPATH, label))).sendKeys(text);
     }
 
     public void clear() {

@@ -1,6 +1,8 @@
 package tests.ui.projectspage;
 
-import models.singleproject.Project;
+import models.project.Project;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.ui.BaseTest;
 
@@ -13,5 +15,14 @@ public class ProjectsPageTest extends BaseTest {
                 .login(USERNAME, PASSWORD);
         projectsPageSteps
                 .createNewProject(newProject, "Public");
+    }
+
+    @Parameters({"projectName"})
+    @Test(description = "Searching for project")
+    public void verifyProjectDisplayedInSearch(@Optional("glebTest") String param) {
+        loginPageSteps
+                .login(USERNAME, PASSWORD);
+        projectsPageSteps
+                .searchForProject(param);
     }
 }

@@ -1,4 +1,4 @@
-package models.singleproject.createproject;
+package models.project.createproject;
 
 import com.google.gson.annotations.Expose;
 import lombok.Data;

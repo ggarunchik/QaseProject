@@ -1,11 +1,11 @@
 package steps.projects;
 
 import io.qameta.allure.Step;
-
-import models.singleproject.Project;
+import models.project.Project;
 import org.testng.Assert;
+import pageobjects.createproject.CreateProjectPage;
+import pageobjects.project.ProjectPage;
 import pageobjects.projects.ProjectsPage;
-import pageobjects.projects.createprojectpage.CreateProjectPage;
 
 public class ProjectsPageSteps {
 
@@ -32,5 +32,23 @@ public class ProjectsPageSteps {
                 .isCorrectProjectPageOpened(newProject.getTitle());
         Assert.assertTrue(isProjectCreated, "Project has not been created");
         return this;
+    }
+
+    @Step("Search for project with name {}")
+    public ProjectsPageSteps searchForProject(String projectName) {
+        boolean isProjectDisplayed =
+                projectsPage
+                        .searchInForm(projectName)
+                        .isProjectDisplayed(projectName);
+        Assert.assertTrue(isProjectDisplayed, "Project could not be found is search");
+        return this;
+    }
+
+    @Step("Opening project with name {}")
+    public ProjectPage openProject(String projectName) {
+        projectsPage
+                .searchInForm(projectName)
+                .openProjectPage(projectName);
+        return new ProjectPage();
     }
 }
