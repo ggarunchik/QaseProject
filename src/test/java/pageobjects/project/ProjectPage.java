@@ -4,16 +4,12 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.testng.collections.Lists;
 import pageobjects.BasePage;
 
 import java.time.Duration;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.core.IsNot.not;
 
 public class ProjectPage extends BasePage {
 
@@ -44,8 +40,10 @@ public class ProjectPage extends BasePage {
         return new CreateTestCasePage();
     }
 
-    @Step("Verify test case has been created")
-    public boolean isTestCaseCreated(String testCaseName) {
+    @Step("Verify test case {testCaseName} exists")
+    public boolean isTestCaseExist(String testCaseName) {
+        isPageOpened();
+        refresh();
         isPageOpened();
         List<SelenideElement> titleNames = $$(TEST_CASE_TITLE_CSS);
         return titleNames.stream().anyMatch(item -> testCaseName.equals(item.getText()));
@@ -62,15 +60,5 @@ public class ProjectPage extends BasePage {
             }
         }
         return new TestCaseInfoPage();
-    }
-
-    @Step("Verify is test case {testCaseName} not exists")
-    public ProjectPage isTestCaseNotExist(String testCaseName) {
-        isPageOpened();
-        refresh();
-        isPageOpened();
-        List<String> titleNames = $$(TEST_CASE_TITLE_CSS).texts();
-        assertThat(titleNames, not(hasItem(testCaseName)));
-        return this;
     }
 }

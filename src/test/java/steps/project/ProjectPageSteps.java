@@ -30,8 +30,7 @@ public class ProjectPageSteps {
                 .enterTestCaseData(testCase)
                 .clickSaveTestCaseButton();
         boolean isTestCaseCreated =
-                projectPage
-                        .isTestCaseCreated(testCase.getTitle());
+                projectPage.isTestCaseExist(testCase.getTitle());
         assertTrue(isTestCaseCreated, "Test case has no been created");
         return this;
     }
@@ -44,8 +43,9 @@ public class ProjectPageSteps {
                 .clickDeleteButton();
         deleteTestModalPage
                 .clickDeleteTestCaseButton();
-        projectPage
-                .isTestCaseNotExist(caseTitle);
+        boolean isTestCaseCreated =
+                projectPage.isTestCaseExist(caseTitle);
+        assertTrue(isTestCaseCreated, "Test case has no been deleted (found in a list)");
         return this;
     }
 
@@ -62,8 +62,8 @@ public class ProjectPageSteps {
                 .clickOnCaseByCaseName(editedTestCase.getTitle());
         assertTrue(
                 testCaseInfoPage.getCaseTitle().equals(editedTestCase.getTitle()) &&
-                         testCaseInfoPage.getFieldValueByName("Description").equals(editedTestCase.getDescription()) &&
-                         testCaseInfoPage.getFieldValueByName("Severity").equals(editedTestCase.getSeverity()),
+                        testCaseInfoPage.getFieldValueByName("Description").equals(editedTestCase.getDescription()) &&
+                        testCaseInfoPage.getFieldValueByName("Severity").equals(editedTestCase.getSeverity()),
                 "Some fields are not been updated");
         return this;
     }
