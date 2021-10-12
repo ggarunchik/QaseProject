@@ -9,14 +9,14 @@ public class ProjectPageTest extends BaseTest {
     @Test(description = "Verify CRUD for test case")
     public void verifyCRUDforTestCase() {
         TestCase testCase = testCaseFactory.generateRandomTestCase();
-        String newTitle = "Edited title";
+        TestCase editedTestCase = testCaseFactory.generateRandomTestCase();
         loginPageSteps
                 .login(USERNAME, PASSWORD);
         projectsPageSteps
                 .openProject("glebTest");
         projectPageSteps
                 .createNewTestCase(testCase)
-                .editTestCase(testCase.getTitle(), newTitle)
-                .deleteTestCase(newTitle);
+                .editTestCase(testCase.getTitle(),editedTestCase)
+                .deleteTestCase(editedTestCase.getTitle());
     }
 }

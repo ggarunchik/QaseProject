@@ -2,7 +2,6 @@ package pageobjects.project;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import elements.casepreview.InfoField;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pageobjects.BasePage;
@@ -17,6 +16,8 @@ public class TestCaseInfoPage extends BasePage {
     private static final By PREVIEW_CLOSE_CSS = By.cssSelector(".preview-close");
     public static final By DELETE_TEST_CASE_BUTTON_CSS = By.cssSelector("button[title='Delete case']");
     public static final By EDIT_TEST_CASE_BUTTON_CSS = By.cssSelector("a[title='Edit case']");
+    public static final String PREVIEW_INFO_LOCATOR = "//*[contains(@class, 'preview-param-title') and contains(text(), " +
+            "'%s')]/..//*[contains(@class,'preview-param-value')]";
 
     @Override
     public boolean isPageOpened() {
@@ -38,13 +39,15 @@ public class TestCaseInfoPage extends BasePage {
         return new DeleteTestModalPage();
     }
 
-    @Step("Getting field ({}) value")
+    @Step("Getting field value with title {label}")
     public String getFieldValueByName(String label) {
-        return new InfoField(label).getFieldValueByName();
+        isPageOpened();
+        return $(By.xpath(String.format(PREVIEW_INFO_LOCATOR, label))).getText();
     }
 
     @Step("Getting test case title")
     public String getCaseTitle() {
+        isPageOpened();
         return $(PREVIEW_TITLE_CSS).getText();
     }
 
@@ -52,15 +55,5 @@ public class TestCaseInfoPage extends BasePage {
     public EditTestCasePage clickEditTestCaseButton() {
         $(EDIT_TEST_CASE_BUTTON_CSS).click();
         return new EditTestCasePage();
-    }
-
-    @Step("Verify case data has been changed")
-    public boolean isCaseDataChanged(String label, String text) {
-        return getFieldValueByName(label).equals(text);
-    }
-
-    @Step("Verify case title")
-    public boolean isTitleChanged(String text){
-        return getCaseTitle().equals(text);
     }
 }

@@ -2,8 +2,9 @@ package steps.project;
 
 import io.qameta.allure.Step;
 import models.project.testcase.TestCase;
-import org.testng.Assert;
 import pageobjects.project.*;
+
+import static org.testng.Assert.assertTrue;
 
 public class ProjectPageSteps {
 
@@ -31,7 +32,7 @@ public class ProjectPageSteps {
         boolean isTestCaseCreated =
                 projectPage
                         .isTestCaseCreated(testCase.getTitle());
-        Assert.assertTrue(isTestCaseCreated, "Test case has no been created");
+        assertTrue(isTestCaseCreated, "Test case has no been created");
         return this;
     }
 
@@ -49,21 +50,21 @@ public class ProjectPageSteps {
     }
 
     @Step("Editing test case")
-    public ProjectPageSteps editTestCase(String caseTitle, String newTitle) {
+    public ProjectPageSteps editTestCase(String testTitleToEdit, TestCase editedTestCase) {
         projectPage
-                .clickOnCaseByCaseName(caseTitle);
+                .clickOnCaseByCaseName(testTitleToEdit);
         testCaseInfoPage
                 .clickEditTestCaseButton();
         editTestCasePage
-                .editInputWithLabel("Title", newTitle)
-                .editTextareaWithLabel("Description", "Edited Description")
-                .editDropDownWithLabel("Severity", "Trivial")
+                .edit(editedTestCase)
                 .clickSaveEditCaseButton();
         projectPage
-                .clickOnCaseByCaseName("Edited title");
-        testCaseInfoPage.isTitleChanged(newTitle);
-        testCaseInfoPage.isCaseDataChanged("Description", "Edited Description");
-        testCaseInfoPage.isCaseDataChanged("Severity", "Trivial");
+                .clickOnCaseByCaseName(editedTestCase.getTitle());
+        assertTrue(
+                testCaseInfoPage.getCaseTitle().equals(editedTestCase.getTitle()) &&
+                         testCaseInfoPage.getFieldValueByName("Description").equals(editedTestCase.getDescription()) &&
+                         testCaseInfoPage.getFieldValueByName("Severity").equals(editedTestCase.getSeverity()),
+                "Some fields are not been updated");
         return this;
     }
 }

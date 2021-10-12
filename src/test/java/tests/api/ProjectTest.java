@@ -21,7 +21,7 @@ public class ProjectTest extends BaseApiTest {
         //Verify code is correct
         Assert.assertEquals(createResponse.getResult().getCode(), project.getCode().toUpperCase(), "Code is invalid.");
         //Get all projects
-        Projects projectsResultResponse = projectsAdapter.get(100);
+        Projects projectsResultResponse = projectsAdapter.get(200);
         //Verify new project is in a list
         assertThat(projectsResultResponse.getProjectsResult().getProjectResultList(),
                 hasItem(hasProperty("code", is(project.getCode().toUpperCase()))));
