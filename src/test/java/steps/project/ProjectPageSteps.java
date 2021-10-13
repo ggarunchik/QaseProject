@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import models.project.testcase.TestCase;
 import pageobjects.project.*;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class ProjectPageSteps {
@@ -45,7 +46,7 @@ public class ProjectPageSteps {
                 .clickDeleteTestCaseButton();
         boolean isTestCaseCreated =
                 projectPage.isTestCaseExist(caseTitle);
-        assertTrue(isTestCaseCreated, "Test case has no been deleted (found in a list)");
+        assertFalse(isTestCaseCreated, "Test case has no been deleted (found in a list)");
         return this;
     }
 
