@@ -22,7 +22,7 @@ public class ProjectPageSteps {
         editTestCasePage = new EditTestCasePage();
     }
 
-    @Step("Create new test case")
+    @Step("Create new test case with name {testCase.title")
     public ProjectPageSteps createNewTestCase(TestCase testCase) {
         projectPage
                 .clickCreateTestCase();
@@ -35,7 +35,7 @@ public class ProjectPageSteps {
         return this;
     }
 
-    @Step("Deleting test case with name")
+    @Step("Deleting test case with name {caseTitle}")
     public ProjectPageSteps deleteTestCase(String caseTitle) {
         projectPage
                 .clickOnCaseByCaseName(caseTitle);

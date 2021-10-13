@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pageobjects.BaseModalPage;
-import pageobjects.BasePage;
 
 import java.time.Duration;
 
