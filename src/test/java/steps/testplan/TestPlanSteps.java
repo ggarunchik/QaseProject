@@ -6,6 +6,8 @@ import pageobjects.testplan.CreateTestPlanPage;
 import pageobjects.testplan.SelectTestCasesPage;
 import pageobjects.testplan.TestPlanPage;
 
+import java.util.List;
+
 import static org.testng.Assert.assertTrue;
 
 public class TestPlanSteps {
@@ -20,10 +22,8 @@ public class TestPlanSteps {
         selectTestCasesPage = new SelectTestCasesPage();
     }
 
-    //TODO не хочу тут передавать один тест сьют - передавать лист сьютов...в методе selectTestCases -
-    // сделать обработку события
     @Step("Creating new test plan")
-    public TestPlanSteps createNewTestPlan(TestPlan testPlan, String projectCode, String testSuiteName) {
+    public TestPlanSteps createNewTestPlan(TestPlan testPlan, String projectCode, List<String> testSuiteName) {
         testPlanPage
                 .openPage(projectCode)
                 .clickCreateTestPlanButton();

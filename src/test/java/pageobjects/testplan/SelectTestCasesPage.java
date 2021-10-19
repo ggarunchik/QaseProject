@@ -9,6 +9,8 @@ import org.testng.Assert;
 import pageobjects.BasePage;
 
 import java.time.Duration;
+import java.util.Iterator;
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -30,12 +32,14 @@ public class SelectTestCasesPage extends BasePage {
     }
 
     @Step("Select test case suite")
-    public SelectTestCasesPage selectTestCases(String testSuiteName) {
-        if (new TestSuiteElement(testSuiteName).getTestCasesAmountInSuite() > 0) {
-            new TestSuiteElement(testSuiteName).selectSuiteCheckbox();
-            setSelectedCases(testSuiteName);
-        } else {
-            Assert.fail("Can't select suite without cases in it");
+    public SelectTestCasesPage selectTestCases(List<String> suiteNames) {
+        for (String suite : suiteNames) {
+            if (new TestSuiteElement(suite).getTestCasesAmountInSuite() > 0) {
+                new TestSuiteElement(suite).selectSuiteCheckbox();
+                setSelectedCases(suite);
+            } else {
+                Assert.fail("Can't select suite without cases in it");
+            }
         }
         return this;
     }
