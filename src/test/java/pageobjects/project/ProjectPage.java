@@ -19,7 +19,7 @@ public class ProjectPage extends BasePage {
     private static final By PROJECT_CREATE_TEST_BUTTON_ID = By.id("create-case-button");
     private static final By TEST_CASE_TITLE_CSS = By.cssSelector(".case-row-title");
     //TODO фигня локатор надо найти лучше
-    private final String TEST_CASE_TITLE_XPATH = "    //div[@class = 'suite-block-header']//a[@class = 'suite-header-title' and text() = '%s']" +
+    private final String TEST_CASE_TITLE_XPATH = "//div[@class = 'suite-block-header']//a[@class = 'suite-header-title' and text() = '%s']" +
             "//..//../..//./..//div[@class = 'cases-container']//div[@class = 'case-row-title']";
 
 
