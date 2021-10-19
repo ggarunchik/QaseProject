@@ -10,9 +10,13 @@ import pageobjects.project.DeleteTestModalPage;
 import pageobjects.project.EditTestCasePage;
 import pageobjects.project.ProjectPage;
 import pageobjects.project.TestCaseInfoPage;
+import pageobjects.testplan.CreateTestPlanPage;
+import pageobjects.testplan.SelectTestCasesPage;
+import pageobjects.testplan.TestPlanPage;
 import steps.login.LoginPageSteps;
 import steps.project.ProjectPageSteps;
 import steps.projects.ProjectsPageSteps;
+import steps.testplan.TestPlanSteps;
 import utils.PropertyReader;
 
 import static com.codeborne.selenide.WebDriverRunner.addListener;
@@ -29,10 +33,12 @@ public class BaseTest {
     protected EditTestCasePage editTestCasePage;
     protected DeleteTestModalPage deleteTestModalPage;
     protected TestCaseInfoPage testCaseInfoPage;
+    protected TestPlanSteps testPlanSteps;
 
     protected PropertyReader propertyReader = new PropertyReader("src/test/resources/configuration.properties");
     protected final String USERNAME = propertyReader.getPropertyValueByKey("username");
     protected final String PASSWORD = propertyReader.getPropertyValueByKey("password");
+    protected final String PROJECT_CODE = propertyReader.getPropertyValueByKey("test_project_code");
 
     @BeforeMethod
     public void setupBrowser() {
@@ -52,6 +58,7 @@ public class BaseTest {
         editTestCasePage = new EditTestCasePage();
         deleteTestModalPage = new DeleteTestModalPage();
         testCaseInfoPage = new TestCaseInfoPage();
+        testPlanSteps = new TestPlanSteps();
     }
 
     @AfterMethod(alwaysRun = true)
