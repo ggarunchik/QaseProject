@@ -18,6 +18,10 @@ public class ProjectPage extends BasePage {
     private static final By NO_PROJECT_CREATE_TEST_BUTTON_XPATH = By.xpath("//a[contains(text(),'Create new case')]");
     private static final By PROJECT_CREATE_TEST_BUTTON_ID = By.id("create-case-button");
     private static final By TEST_CASE_TITLE_CSS = By.cssSelector(".case-row-title");
+    //TODO фигня локатор надо найти лучше
+    private final String TEST_CASE_TITLE_XPATH = "    //div[@class = 'suite-block-header']//a[@class = 'suite-header-title' and text() = '%s']" +
+            "//..//../..//./..//div[@class = 'cases-container']//div[@class = 'case-row-title']";
+
 
     @Override
     public boolean isPageOpened() {
@@ -46,6 +50,15 @@ public class ProjectPage extends BasePage {
         refresh();
         isPageOpened();
         List<SelenideElement> titleNames = $$(TEST_CASE_TITLE_CSS);
+        return titleNames.stream().anyMatch(item -> testCaseName.equals(item.getText()));
+    }
+
+    @Step("Verify test case {testCaseName} exists")
+    public boolean isTestCaseExistInSuite(String testCaseName, String suiteName) {
+        isPageOpened();
+        refresh();
+        isPageOpened();
+        List<SelenideElement> titleNames = $$(By.xpath(String.format(TEST_CASE_TITLE_XPATH, suiteName)));
         return titleNames.stream().anyMatch(item -> testCaseName.equals(item.getText()));
     }
 

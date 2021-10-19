@@ -7,7 +7,7 @@ import tests.ui.BaseTest;
 
 public class TestPlanTest extends BaseTest {
 
-    @Test(description = "Verify CRUD for test case")
+    @Test(description = "Verify new test plan could be created")
     public void verifyTestPlanCouldBeCreated() {
         TestPlan testPlan = new TestPlanFactory().generateTestPlanData();
         loginPageSteps

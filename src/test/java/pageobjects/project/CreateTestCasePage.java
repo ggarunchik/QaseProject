@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import pageobjects.BasePage;
 
 import java.time.Duration;
+import java.util.Arrays;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -26,7 +27,7 @@ public class CreateTestCasePage extends BasePage {
     }
 
     @Step("Generating test case data")
-    public CreateTestCasePage enterTestCaseData(TestCase testCase) {
+    public CreateTestCasePage enterTestCaseData(TestCase testCase, String... suite) {
         new Input("Title").write(testCase.getTitle());
         new TextArea("Description").write(testCase.getDescription());
         new DropDown("Status").selectOption(testCase.getStatus());
@@ -39,6 +40,9 @@ public class CreateTestCasePage extends BasePage {
         new DropDown("Automation status").selectOption(testCase.getAutomationStatus());
         new TextArea("Pre-conditions").write(testCase.getPreConditions());
         new TextArea("Post-conditions").write(testCase.getPostConditions());
+        if(suite.length > 0) {
+            new DropDown("Suite").selectOption(suite[0]);
+        }
         return this;
     }
 

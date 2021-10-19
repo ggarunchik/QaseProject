@@ -24,15 +24,21 @@ public class ProjectPageSteps {
     }
 
     @Step("Create new test case with name {testCase.title")
-    public ProjectPageSteps createNewTestCase(TestCase testCase) {
+    public ProjectPageSteps createNewTestCase(TestCase testCase, String... suite) {
         projectPage
                 .clickCreateTestCase();
         createTestCasePage
-                .enterTestCaseData(testCase)
+                .enterTestCaseData(testCase, suite)
                 .clickSaveTestCaseButton();
-        boolean isTestCaseCreated =
-                projectPage.isTestCaseExist(testCase.getTitle());
-        assertTrue(isTestCaseCreated, "Test case has no been created");
+        if (suite.length == 0) {
+            boolean isTestCaseCreated =
+                    projectPage.isTestCaseExist(testCase.getTitle());
+            assertTrue(isTestCaseCreated, "Test case has no been created");
+        } else {
+            boolean isTestCaseCreatedInSuite =
+                    projectPage.isTestCaseExistInSuite(testCase.getTitle(), suite[0]);
+            assertTrue(isTestCaseCreatedInSuite, "Test case has no been created in suite");
+        }
         return this;
     }
 

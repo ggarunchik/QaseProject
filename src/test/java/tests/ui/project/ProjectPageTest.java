@@ -16,7 +16,18 @@ public class ProjectPageTest extends BaseTest {
                 .openProject("glebTest");
         projectPageSteps
                 .createNewTestCase(testCase)
-                .editTestCase(testCase.getTitle(),editedTestCase)
+                .editTestCase(testCase.getTitle(), editedTestCase)
                 .deleteTestCase(editedTestCase.getTitle());
+    }
+
+    @Test(description = "Verify test could be added to a suite")
+    public void verifyTestCouldBeAddedToSuite() {
+        TestCase testCase = testCaseFactory.generateRandomTestCase();
+        loginPageSteps
+                .login(USERNAME, PASSWORD);
+        projectsPageSteps
+                .openProject("glebTest");
+        projectPageSteps
+                .createNewTestCase(testCase,"Test Suite #1 (autotest)");
     }
 }

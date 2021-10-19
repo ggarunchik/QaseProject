@@ -23,18 +23,18 @@ public class TestSuiteElement {
         $(By.xpath(String.format(SUITE_CASE_LOCATOR, testSuiteName))).click();
     }
 
-    @Step("Select suite with name {suiteName}")
+    @Step("Select suite with name")
     public void selectSuiteCheckbox() {
         $(By.xpath(String.format(SUITE_CASE_CHECKBOX, testSuiteName))).click();
     }
 
-    @Step("Getting selected test cases amount {suiteName}")
+    @Step("Getting selected test cases amount")
     public int getSelectedTestCases() {
         String suiteText = $(By.xpath(String.format(SUITE_CASE_COUNTER, testSuiteName))).getText();
         return Integer.parseInt(suiteText.split("/")[0]);
     }
 
-    @Step("Getting amount of tests in a suite: {suiteName}")
+    @Step("Getting amount of tests in a suite")
     public int getTestCasesAmountInSuite() {
         String suiteText = $(By.xpath(String.format(SUITE_CASE_COUNTER, testSuiteName))).getText();
         return Integer.parseInt(suiteText.split("/")[1]);
