@@ -19,7 +19,7 @@ public class ProjectsPageTest extends BaseTest {
     @Test(description = "Searching for project")
     public void verifyProjectDisplayedInSearch(@Optional("glebTest") String param) {
         loginPageSteps
-                .login(USERNAME, PASSWORD);
+                .login(TEST_USER_EMAIL, TEST_USER_PASSWORD);
         projectsPageSteps
                 .searchForProject(param);
     }
