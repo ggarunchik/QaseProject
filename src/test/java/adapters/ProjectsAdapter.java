@@ -1,9 +1,9 @@
 package adapters;
 
 import lombok.extern.log4j.Log4j2;
+import models.project.Project;
+import models.project.createproject.ProjectCreateResults;
 import models.projects.Projects;
-import models.singleproject.Project;
-import models.singleproject.createproject.ProjectCreateResults;
 
 @Log4j2
 public class ProjectsAdapter extends BaseAdapter {

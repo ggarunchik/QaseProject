@@ -4,17 +4,16 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import pageobjects.BasePage;
-import pageobjects.projects.createprojectpage.CreateProjectPage;
+import pageobjects.createproject.CreateProjectPage;
+import pageobjects.project.ProjectPage;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
 public class ProjectsPage extends BasePage {
@@ -22,6 +21,8 @@ public class ProjectsPage extends BasePage {
     private static final String PROJECTS_NAME_TABLE_CSS = "th.sortable";
     private static final String CREATE_PROJECTS_BUTTON_CSS = "#createButton";
     private static final String PROJECT_NAME_CSS = "p.header";
+    private static final By SEARCH_FORM_CSS = By.cssSelector(".form-control");
+    private static final By PROJECT_TITLE_IN_SEARCH_CSS = By.cssSelector(".defect-title");
     private final String PROJECTS_PAGE_URL = propertyReader.getPropertyValueByKey("base_url") + "projects";
 
 
@@ -54,9 +55,29 @@ public class ProjectsPage extends BasePage {
         return this;
     }
 
-    @Step("Click on Create new project button.")
+    @Step("Click on Create new project button")
     public CreateProjectPage clickOnCreateProjectButton() {
         $(CREATE_PROJECTS_BUTTON_CSS).click();
         return new CreateProjectPage();
     }
+
+    @Step("Select search tap")
+    public ProjectsPage searchInForm(String projectName) {
+        SelenideElement element = $(SEARCH_FORM_CSS);
+        element.click();
+        element.sendKeys(projectName);
+        return this;
+    }
+
+    @Step("Verify project with name exists in search")
+    public boolean isProjectDisplayed(String projectName) {
+        return $$(PROJECT_TITLE_IN_SEARCH_CSS).findBy(Condition.text(projectName)).isDisplayed();
+    }
+
+    @Step("Opening project page")
+    public ProjectPage openProjectPage(String projectName) {
+        $$(PROJECT_TITLE_IN_SEARCH_CSS).findBy(Condition.text(projectName)).click();
+        return new ProjectPage();
+    }
+
 }

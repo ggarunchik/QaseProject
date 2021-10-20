@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import models.singleproject.ProjectResult;
+import models.project.ProjectResult;
 
 import java.util.List;
 

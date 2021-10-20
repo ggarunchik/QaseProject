@@ -1,16 +1,13 @@
-package pageobjects.projects.createprojectpage;
+package pageobjects.createproject;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import elements.Input;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import models.singleproject.Project;
+import models.project.Project;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.testng.Assert;
 import pageobjects.BasePage;
-import utils.AllureUtils;
 
 import java.time.Duration;
 
@@ -27,7 +24,7 @@ public class CreateProjectPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-            $(CREATE_PROJECTS_BUTTON_CSS).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(CREATE_PROJECTS_BUTTON_CSS).shouldBe(Condition.visible, Duration.ofSeconds(4));
         return element.isDisplayed();
     }
 
