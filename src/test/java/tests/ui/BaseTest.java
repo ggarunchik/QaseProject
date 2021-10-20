@@ -35,12 +35,9 @@ public class BaseTest {
     protected TestCaseInfoPage testCaseInfoPage;
     protected TestPlanSteps testPlanSteps;
 
-    protected PropertyReader propertyReader = new PropertyReader("src/test/resources/configuration.properties");
-    protected final String USERNAME = propertyReader.getPropertyValueByKey("username");
-    protected final String PASSWORD = propertyReader.getPropertyValueByKey("password");
-    protected final String PROJECT_CODE = propertyReader.getPropertyValueByKey("test_project_code");
-    public final static String TEST_USER_EMAIL = System.getenv("username");
-    public final static String TEST_USER_PASSWORD = System.getenv("password");
+    protected final String PROJECT_CODE = PropertyReader.getProperty("test_project_code");
+    protected final String TEST_USER_EMAIL = System.getenv().getOrDefault("username", PropertyReader.getProperty("username"));
+    protected final String TEST_USER_PASSWORD = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
 
     @BeforeMethod
     public void setupBrowser() {

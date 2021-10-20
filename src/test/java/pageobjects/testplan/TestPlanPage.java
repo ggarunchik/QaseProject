@@ -5,13 +5,14 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pageobjects.BasePage;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class TestPlanPage extends BasePage {
-    private final String TEST_PLAN_PAGE_URL = propertyReader.getPropertyValueByKey("base_url") + "plan";
+    private final String TEST_PLAN_PAGE_URL = System.getenv().getOrDefault("base_url",PropertyReader.getProperty("base_url")) + "plan";
     public static final By TEST_PLAN_TITLE_XPATH = By.xpath("//h1[contains(text(),'Test plans')]");
     public static final By CREATE_TEST_PLAN_BUTTON_ID = By.id("createButton");
     public static final By NO_PROJECT_TEXT_XPATH = By.xpath("//span[@class = 'no-project mt-4']");
