@@ -11,7 +11,7 @@ public class ProjectPageTest extends BaseTest {
         TestCase testCase = testCaseFactory.generateRandomTestCase();
         TestCase editedTestCase = testCaseFactory.generateRandomTestCase();
         loginPageSteps
-                .login(USERNAME, PASSWORD);
+                .login(TEST_USER_EMAIL, TEST_USER_PASSWORD);
         projectsPageSteps
                 .openProject("glebTest");
         projectPageSteps
@@ -24,7 +24,7 @@ public class ProjectPageTest extends BaseTest {
     public void verifyTestCouldBeAddedToSuite() {
         TestCase testCase = testCaseFactory.generateRandomTestCase();
         loginPageSteps
-                .login(USERNAME, PASSWORD);
+                .login(TEST_USER_EMAIL, TEST_USER_PASSWORD);
         projectsPageSteps
                 .openProject("glebTest");
         projectPageSteps

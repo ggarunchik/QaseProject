@@ -15,7 +15,7 @@ public class TestPlanTest extends BaseTest {
         TestPlan testPlan = new TestPlanFactory().generateTestPlanData();
         List<String> suites = Arrays.asList("Test Suite #2 (autotest)", "Test Suite #3 (autotest)", "Test Suite #1 (autotest)");
         loginPageSteps
-                .login(USERNAME, PASSWORD);
+                .login(TEST_USER_EMAIL, TEST_USER_PASSWORD);
         testPlanSteps
                 .createNewTestPlan(testPlan, PROJECT_CODE, suites);
     }

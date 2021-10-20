@@ -39,6 +39,8 @@ public class BaseTest {
     protected final String USERNAME = propertyReader.getPropertyValueByKey("username");
     protected final String PASSWORD = propertyReader.getPropertyValueByKey("password");
     protected final String PROJECT_CODE = propertyReader.getPropertyValueByKey("test_project_code");
+    public final static String TEST_USER_EMAIL = System.getenv("username");
+    public final static String TEST_USER_PASSWORD = System.getenv("password");
 
     @BeforeMethod
     public void setupBrowser() {
