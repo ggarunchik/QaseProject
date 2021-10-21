@@ -23,7 +23,7 @@ public class EditTestCasePage extends BasePage {
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-                $(By.xpath(String.format(EDIT_CASE_BUTTON_XPATH, "Save"))).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(By.xpath(String.format(EDIT_CASE_BUTTON_XPATH, "Save"))).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 

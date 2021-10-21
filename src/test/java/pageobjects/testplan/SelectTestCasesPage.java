@@ -27,7 +27,7 @@ public class SelectTestCasesPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-                $(SELECT_CASES_XPATH).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(SELECT_CASES_XPATH).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 

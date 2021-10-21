@@ -29,7 +29,7 @@ public class LoginPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-                $(LOGIN_BUTTON_ID).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(LOGIN_BUTTON_ID).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 

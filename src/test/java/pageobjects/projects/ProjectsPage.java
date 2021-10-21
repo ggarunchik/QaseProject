@@ -31,7 +31,7 @@ public class ProjectsPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-                $(PROJECTS_NAME_TABLE_CSS).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(PROJECTS_NAME_TABLE_CSS).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 

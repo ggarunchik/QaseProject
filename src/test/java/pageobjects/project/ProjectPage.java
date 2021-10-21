@@ -26,7 +26,7 @@ public class ProjectPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-                $(REPOSITORY_HEADER_XPATH).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(REPOSITORY_HEADER_XPATH).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 

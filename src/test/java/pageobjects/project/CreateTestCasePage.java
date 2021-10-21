@@ -11,7 +11,6 @@ import org.openqa.selenium.By;
 import pageobjects.BasePage;
 
 import java.time.Duration;
-import java.util.Arrays;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -22,7 +21,7 @@ public class CreateTestCasePage extends BasePage {
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-                $(SAVE_BUTTON_ID).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(SAVE_BUTTON_ID).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 

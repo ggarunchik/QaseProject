@@ -16,7 +16,7 @@ public class DeleteTestModalPage extends BaseModalPage {
     @Override
     public boolean isModalOpened() {
         SelenideElement element =
-                $(By.xpath(String.format(MODAL_BUTTON_LOCATOR_XPATH, "Delete"))).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(By.xpath(String.format(MODAL_BUTTON_LOCATOR_XPATH, "Delete"))).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 

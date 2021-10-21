@@ -22,7 +22,7 @@ public class TestCaseInfoPage extends BasePage {
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-                $(PREVIEW_TITLE_CSS).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(PREVIEW_TITLE_CSS).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 
