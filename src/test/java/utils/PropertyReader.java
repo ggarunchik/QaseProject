@@ -1,32 +1,55 @@
 package utils;
 
-import lombok.extern.log4j.Log4j2;
-
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
-@Log4j2
-public class PropertyReader {
+public final class PropertyReader {
+    private static String propertiesPath = "/configuration.properties";
+    private static volatile Properties properties;
+    private static InputStream inputStream;
 
-    private final Properties properties = new Properties();
-
-    public PropertyReader(String filepath) {
-        try {
-            FileInputStream fileInputStream = new FileInputStream(filepath);
-            properties.load(fileInputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    private PropertyReader() {
     }
 
-    public String getPropertyValueByKey(String key) {
-        if (properties.getProperty(key) != null) {
-            return properties.getProperty(key);
-        } else {
-            log.error("Cannot find properly by key: {}", key);
-            throw new RuntimeException();
+    private static String getCorrectPath() {
+        if (propertiesPath.charAt(0) != '/')
+            propertiesPath = "/" + propertiesPath;
+        return propertiesPath;
+    }
+
+    public static Properties readProperties() {
+        properties = new Properties();
+        try {
+            inputStream = PropertyReader.class.getResourceAsStream(getCorrectPath());
+            if (inputStream != null)
+                properties.load(inputStream);
+        } catch (Exception ex) {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+        if (properties.getProperty("config_file") != null) {
+            Properties additionalProperties = getProperties(properties.getProperty("config_file"));
+            properties.putAll(additionalProperties);
+        }
+        return properties;
+    }
+
+    private static Properties loadProperties() {
+        return properties != null ? properties : readProperties();
+    }
+
+    public static Properties getProperties(String path) {
+        propertiesPath = path;
+        return readProperties();
+    }
+
+    public static String getProperty(String propertyName) {
+        return loadProperties().getProperty(propertyName);
     }
 }

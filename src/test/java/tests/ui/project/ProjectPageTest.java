@@ -11,12 +11,23 @@ public class ProjectPageTest extends BaseTest {
         TestCase testCase = testCaseFactory.generateRandomTestCase();
         TestCase editedTestCase = testCaseFactory.generateRandomTestCase();
         loginPageSteps
-                .login(USERNAME, PASSWORD);
+                .login(TEST_USER_EMAIL, TEST_USER_PASSWORD);
         projectsPageSteps
                 .openProject("glebTest");
         projectPageSteps
                 .createNewTestCase(testCase)
-                .editTestCase(testCase.getTitle(),editedTestCase)
+                .editTestCase(testCase.getTitle(), editedTestCase)
                 .deleteTestCase(editedTestCase.getTitle());
+    }
+
+    @Test(description = "Verify test could be added to a suite")
+    public void verifyTestCouldBeAddedToSuite() {
+        TestCase testCase = testCaseFactory.generateRandomTestCase();
+        loginPageSteps
+                .login(TEST_USER_EMAIL, TEST_USER_PASSWORD);
+        projectsPageSteps
+                .openProject("glebTest");
+        projectPageSteps
+                .createNewTestCase(testCase,"Test Suite #1 (autotest)");
     }
 }

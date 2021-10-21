@@ -13,9 +13,8 @@ import static io.restassured.RestAssured.given;
 @Log4j2
 public class BaseAdapter {
     protected Gson gson;
-    protected PropertyReader propertyReader = new PropertyReader("src/test/resources/configuration.properties");
-    private final String ACCESS_TOKEN = propertyReader.getPropertyValueByKey("access_token");
-    protected final String API_BASE_URL = propertyReader.getPropertyValueByKey("api_base_url");
+    protected final String ACCESS_TOKEN = System.getenv().getOrDefault("access_token", PropertyReader.getProperty("access_token"));
+    protected final String API_BASE_URL = System.getenv().getOrDefault("api_base_url", PropertyReader.getProperty("api_base_url"));
 
     public BaseAdapter() {
         gson = new GsonBuilder()

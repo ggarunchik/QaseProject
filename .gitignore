@@ -7,6 +7,7 @@
 *.war
 *.ear
 *.nar
+src/test/resources/configuration.properties
 hs_err_pid*
 
 ##############################

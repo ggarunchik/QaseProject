@@ -10,6 +10,7 @@ import org.testng.Assert;
 import pageobjects.BasePage;
 import pageobjects.createproject.CreateProjectPage;
 import pageobjects.project.ProjectPage;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
@@ -23,14 +24,14 @@ public class ProjectsPage extends BasePage {
     private static final String PROJECT_NAME_CSS = "p.header";
     private static final By SEARCH_FORM_CSS = By.cssSelector(".form-control");
     private static final By PROJECT_TITLE_IN_SEARCH_CSS = By.cssSelector(".defect-title");
-    private final String PROJECTS_PAGE_URL = propertyReader.getPropertyValueByKey("base_url") + "projects";
+    private static final String PROJECTS_PAGE_URL = System.getenv().getOrDefault("base_url", PropertyReader.getProperty("base_url")) + "projects";
 
 
     @Step("Verifying is Projects Page opened")
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-                $(PROJECTS_NAME_TABLE_CSS).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(PROJECTS_NAME_TABLE_CSS).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 

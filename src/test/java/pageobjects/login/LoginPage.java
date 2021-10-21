@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import pageobjects.BasePage;
 import pageobjects.projects.ProjectsPage;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
@@ -20,17 +21,15 @@ public class LoginPage extends BasePage {
 
     private static final By EMAIL_INPUT_ID = id("inputEmail");
     private static final By PASSWORD_INPUT_ID = id("inputPassword");
-    private static final By REMEMBER_ME_CHECKBOX = cssSelector(".custom-control-input");
     private static final By LOGIN_BUTTON_ID = id("btnLogin");
-
-    private final String HOME_URL = propertyReader.getPropertyValueByKey("base_url") + "login";
+    private static final String HOME_URL = System.getenv().getOrDefault("base_url", PropertyReader.getProperty("base_url")) + "login";
 
 
     @Step("Verifying is Login Page opened")
     @Override
     public boolean isPageOpened() {
         SelenideElement element =
-                $(LOGIN_BUTTON_ID).shouldBe(Condition.visible, Duration.ofSeconds(4));
+                $(LOGIN_BUTTON_ID).shouldBe(Condition.visible, Duration.ofSeconds(WAIT_DURATION));
         return element.isDisplayed();
     }
 

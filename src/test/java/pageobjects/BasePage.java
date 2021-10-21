@@ -1,10 +1,6 @@
 package pageobjects;
 
-import utils.PropertyReader;
-
 public abstract class BasePage {
-
-    protected PropertyReader propertyReader = new PropertyReader("src/test/resources/configuration.properties");
-
+    public final int WAIT_DURATION = 4;
     public abstract boolean isPageOpened();
 }
